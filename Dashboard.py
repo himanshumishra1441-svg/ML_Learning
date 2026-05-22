@@ -1,5 +1,4 @@
-# dashboard.py
-# Run: streamlit run dashboard.py
+
 
 import numpy as np
 import pandas as pd
@@ -15,18 +14,12 @@ from sklearn.decomposition import PCA
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report, silhouette_score
 
-# ─────────────────────────────────────────
-# PAGE CONFIG
-# ─────────────────────────────────────────
 st.set_page_config(
-    page_title="SGSITS Student AI Dashboard",
+    page_title="Student AI Dashboard",
     page_icon="🎓",
     layout="wide",
 )
 
-# ─────────────────────────────────────────
-# TRAIN MODELS
-# ─────────────────────────────────────────
 @st.cache_resource
 def train_models():
     np.random.seed(42)
@@ -153,17 +146,14 @@ st.divider()
 # TABS
 # ─────────────────────────────────────────
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "🔮 Predict Student",
-    "📊 Cluster Analysis",
-    "🔵 PCA Visualization",
-    "📉 Elbow & Silhouette",
-    "📈 Model Insights",
+    "Predict Student",
+    "Cluster Analysis",
+    "PCA Visualization",
+    "Elbow & Silhouette",
+    "Model Insights",
 ])
 
 
-# ══════════════════════════════════════════
-# TAB 1 — Predict Student
-# ══════════════════════════════════════════
 with tab1:
     st.subheader("Enter Student Details")
     st.caption("Move sliders — predictions update instantly.")
@@ -201,12 +191,12 @@ with tab1:
         st.divider()
 
         emoji_map = {
-            'High Performers':  '🏆',
-            'Average Students': '📚',
-            'At-Risk Students': '⚠️',
+            'High Performers'
+            'Average Students'
+            'At-Risk Students'
         }
         st.markdown("### Cluster Group")
-        st.info(f"{emoji_map.get(cluster_label, '📍')} **{cluster_label}**")
+        st.info(f"{emoji_map.get(cluster_label)} **{cluster_label}**")
 
         st.markdown("### Recommended Action")
         if dropout_pred == 1:
@@ -230,9 +220,6 @@ with tab1:
             """)
 
 
-# ══════════════════════════════════════════
-# TAB 2 — Cluster Analysis
-# ══════════════════════════════════════════
 with tab2:
     st.subheader("Student Cluster Profiles")
     st.caption("K-Means (K=3) finds natural student groups — no labels used.")
@@ -297,9 +284,6 @@ with tab2:
     plt.close(fig2)
 
 
-# ══════════════════════════════════════════
-# TAB 3 — PCA Visualization
-# ══════════════════════════════════════════
 with tab3:
     st.subheader("PCA — 5D Data Reduced to 2D")
     st.caption(
@@ -368,9 +352,6 @@ with tab3:
     plt.close(fig4)
 
 
-# ══════════════════════════════════════════
-# TAB 4 — Elbow & Silhouette
-# ══════════════════════════════════════════
 with tab4:
     st.subheader("Finding the Right Number of Clusters")
     st.caption(
@@ -440,9 +421,6 @@ with tab4:
     """)
 
 
-# ══════════════════════════════════════════
-# TAB 5 — Model Insights
-# ══════════════════════════════════════════
 with tab5:
     st.subheader("Random Forest — Feature Importance")
     st.caption("Which student metrics matter most for dropout prediction?")
